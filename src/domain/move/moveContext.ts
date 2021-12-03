@@ -71,11 +71,25 @@ export const moveContext = () => {
 		}
 	};
 
-	const moving = (
+	const advancTofrontIfIsValid = (
 		mower: MowerInterface,
-		sequencies: string,
 		lawn: LawnInterface
 	) => {
+		const nextMove = nextMoveValid(mower, lawn);
+		if (nextMove) {
+			toFront(mower);
+		}
+	};
+
+	const moving = ({
+		lawn,
+		mower,
+		sequencies,
+	}: {
+		mower: MowerInterface;
+		sequencies: string;
+		lawn: LawnInterface;
+	}) => {
 		sequencies.split("").map((sec) => {
 			switch (sec) {
 				case "L":
@@ -85,10 +99,10 @@ export const moveContext = () => {
 					toRight(mower);
 					break;
 				case "F":
-					if (nextMoveValid(mower, lawn)) toFront(mower);
+					advancTofrontIfIsValid(mower, lawn);
 					break;
 				default:
-					console.log("Input Format Error");
+					console.error(`Error: Sequency not valid ${sec}`);
 			}
 		});
 	};

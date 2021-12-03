@@ -8,10 +8,12 @@ export const pointNotAvailable = (
 	y: number,
 	lawn: LawnInterface
 ) => {
-	return lawn.MowerPosition.flatMap((mower) => {
-		if (x === mower.x && y === mower.y) return false;
-		return true;
-	}).some((m) => (m ? true : false));
+	return lawn.mowerPosition
+		.flatMap((mower) => {
+			if (x === mower.x && y === mower.y) return false;
+			return true;
+		})
+		.every(Boolean);
 };
 
 export const fileToArray = (fileUrl: string) => {

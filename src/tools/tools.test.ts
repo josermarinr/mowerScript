@@ -6,7 +6,7 @@ describe("tools", () => {
 		const lawn = {
 			width: 5,
 			height: 5,
-			MowerPosition: [],
+			mowerPosition: [],
 		};
 
 		const result = isInsideOfLawn(mowerPosition[0], mowerPosition[1], lawn);
@@ -19,7 +19,7 @@ describe("tools", () => {
 		const lawn = {
 			width: 5,
 			height: 5,
-			MowerPosition: [{ x: 5, y: 5, direction: "N" }],
+			mowerPosition: [{ x: 5, y: 5, direction: "N" }],
 		};
 
 		const result = pointNotAvailable(mowerPosition[0], mowerPosition[1], lawn);
@@ -32,7 +32,20 @@ describe("tools", () => {
 		const lawn = {
 			width: 5,
 			height: 5,
-			MowerPosition: [{ x: 4, y: 5, direction: "N" }],
+			mowerPosition: [{ x: 4, y: 5, direction: "N" }],
+		};
+
+		const result = pointNotAvailable(mowerPosition[0], mowerPosition[1], lawn);
+
+		expect(result).toBe(true);
+	});
+
+	it("should return true when in the lawn not have mowe", () => {
+		const mowerPosition = [5, 5];
+		const lawn = {
+			width: 5,
+			height: 5,
+			mowerPosition: [],
 		};
 
 		const result = pointNotAvailable(mowerPosition[0], mowerPosition[1], lawn);
