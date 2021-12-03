@@ -11,7 +11,7 @@ describe("tools", () => {
 
 		const result = isInsideOfLawn(mowerPosition[0], mowerPosition[1], lawn);
 
-		expect(result).toBeFalsy;
+		expect(result).toBe(false);
 	});
 
 	it("should return false when in the lawn have a mower at the same position that the new one", () => {
@@ -24,7 +24,20 @@ describe("tools", () => {
 
 		const result = pointNotAvailable(mowerPosition[0], mowerPosition[1], lawn);
 
-		expect(result).toBeFalsy;
+		expect(result).toBe(false);
+	});
+
+	it("should return true when in the lawn have a mower at the other position that the new one", () => {
+		const mowerPosition = [5, 5];
+		const lawn = {
+			width: 5,
+			height: 5,
+			MowerPosition: [{ x: 4, y: 5, direction: "N" }],
+		};
+
+		const result = pointNotAvailable(mowerPosition[0], mowerPosition[1], lawn);
+
+		expect(result).toBe(true);
 	});
 	it("should return an array of data when we passe the good url data", () => {
 		const result = fileToArray("./src/mock/mock.txt");

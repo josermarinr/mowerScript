@@ -1,8 +1,6 @@
-import { Direction } from "../../enum/Direction.enum";
-import { Mower } from "../../enum/Mower.enum";
 import { LawnInterface } from "../../interface/Lawn.interface";
 import { MowerInterface } from "../../interface/Mower.interface";
-import { pointNotAvailable } from "../../tools/tools";
+import { nextMoveValid } from "./moveValidation";
 
 export const moveContext = () => {
 	const toLeft = (mower: MowerInterface) => {
@@ -75,10 +73,10 @@ export const moveContext = () => {
 
 	const moving = (
 		mower: MowerInterface,
-		frequencies: string,
+		sequencies: string,
 		lawn: LawnInterface
 	) => {
-		frequencies.split("").map((sec) => {
+		sequencies.split("").map((sec) => {
 			switch (sec) {
 				case "L":
 					toLeft(mower);
@@ -87,7 +85,7 @@ export const moveContext = () => {
 					toRight(mower);
 					break;
 				case "F":
-					// if (pointNotAvailable(mower.x, mower.y, lawn)) toFront(mower);
+					if (nextMoveValid(mower, lawn)) toFront(mower);
 					break;
 				default:
 					console.log("Input Format Error");
@@ -95,5 +93,5 @@ export const moveContext = () => {
 		});
 	};
 
-	return { toLeft, toRight, toFront, toBack };
+	return { toLeft, toRight, toFront, toBack, moving };
 };

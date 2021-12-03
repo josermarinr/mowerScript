@@ -36,11 +36,24 @@ describe("move validation test", () => {
 		const lawn = {
 			width: 5,
 			height: 5,
-			MowerPosition: [{ x: 2, y: 1, direction: "N" }],
+			MowerPosition: [{ x: 1, y: 2, direction: "N" }],
 		};
 
 		const result = nextMoveValid(mower, lawn);
 
-		expect(result).toBeFalsy;
+		expect(result).toBe(false);
+	});
+
+	it("should return true when the next step is valid", () => {
+		const mower = { x: 1, y: 1, direction: "N" };
+		const lawn = {
+			width: 5,
+			height: 5,
+			MowerPosition: [{ x: 3, y: 3, direction: "N" }],
+		};
+
+		const result = nextMoveValid(mower, lawn);
+
+		expect(result).toBe(true);
 	});
 });

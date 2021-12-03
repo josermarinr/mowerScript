@@ -13,9 +13,10 @@ export const nextMoveValid = (mower: MowerInterface, lawn: LawnInterface) => {
 	const newMower = mower;
 	const { toFront } = moveContext();
 	toFront(newMower);
-	if (horizontalInside(newMower, lawn)) false;
-	else if (verticalInside(newMower, lawn)) false;
-	else pointNotAvailable(newMower.x, newMower.y, lawn);
 
-	return true;
+	const isOutHorizontal = horizontalInside(newMower, lawn);
+	const isOutVertical = verticalInside(newMower, lawn);
+	const isOtherMowerInLawn = pointNotAvailable(newMower.x, newMower.y, lawn);
+
+	return isOutHorizontal && isOutVertical && isOtherMowerInLawn;
 };
