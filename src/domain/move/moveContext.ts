@@ -15,7 +15,7 @@ export const moveContext = () => {
 				mower.direction = "S";
 				break;
 			case "S":
-				mower.direction = "S";
+				mower.direction = "E";
 				break;
 		}
 	};
