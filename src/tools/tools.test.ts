@@ -1,4 +1,10 @@
-import { fileToArray, isInsideOfLawn, pointNotAvailable } from "./tools";
+import {
+	fileToArray,
+	isInsideOfLawn,
+	pointNotAvailable,
+	splitMowerByFile,
+	splitSequenciesByFile,
+} from "./tools";
 
 describe("tools", () => {
 	it("should return false when the mower is outside of lawn", () => {
@@ -69,6 +75,32 @@ describe("tools", () => {
 			"4 0 N",
 			"FFFFF",
 		];
+		expect(result).toStrictEqual(expectedResult);
+	});
+
+	it("should return an array of mower from the data array", () => {
+		const data = fileToArray("./src/mock/mock.txt");
+		const lawnLine = data.shift();
+		console.log(data);
+		const result = splitMowerByFile(data);
+		console.log(result);
+		const expectedResult = [
+			"1 2 N",
+			"3 3 E ",
+			"8 9 E",
+			"1 3 E",
+			"1 2 N",
+			"4 0 N",
+		];
+		expect(result).toStrictEqual(expectedResult);
+	});
+	it("should return an array of sequencies from the data array", () => {
+		const data = fileToArray("./src/mock/mock.txt");
+		const lawnLine = data.shift();
+		console.log(data);
+		const result = splitSequenciesByFile(data);
+		console.log(result);
+		const expectedResult = ["LFLFL", "FFFLL", "FLFLRF", "FFLFR", "FF", "FFFFF"];
 		expect(result).toStrictEqual(expectedResult);
 	});
 });

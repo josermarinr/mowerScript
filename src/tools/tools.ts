@@ -24,3 +24,23 @@ export const fileToArray = (fileUrl: string) => {
 		return ["error transforming the file"];
 	}
 };
+
+export const splitMowerByFile = (data: string[]) => {
+	let mowerArray: any[] = [];
+	data.forEach((mower, index) => {
+		if (index % 2 === 0) {
+			return mowerArray.push(mower);
+		}
+	});
+	return mowerArray;
+};
+
+export const splitSequenciesByFile = (data: string[]) => {
+	let mowerArray: any[] = [];
+	data.forEach((mower, index) => {
+		if (index % 2 !== 0) {
+			return mowerArray.push(mower);
+		}
+	});
+	return mowerArray;
+};
